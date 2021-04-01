@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //material design
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MaterialDesign} from './material/material';
+import { ForgotComponent } from './auth/forgot/forgot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotComponent
   ],
   imports: [
     BrowserModule,

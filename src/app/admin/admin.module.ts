@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialDesign } from '../material/material';
+import { ImagesComponent } from './images/images.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path:'dashboard',
         component:DashboardComponent
+      },
+      {
+        path:'images',
+        component:ImagesComponent
       }
     ]
   }
@@ -20,7 +25,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AdminComponent, DashboardComponent],
+  declarations: [AdminComponent, DashboardComponent, ImagesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
