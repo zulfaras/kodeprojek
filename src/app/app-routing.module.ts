@@ -20,6 +20,14 @@ const routes: Routes = [
     component:ForgotComponent
   },
   {
+    path:'dashboard',
+    component:DashboardComponent
+  },
+  {
+    path:'images',
+    component:ImagesComponent
+  },
+  {
     path:'admin',
     loadChildren:()=>import('./admin/admin.module').then(mod=>mod.AdminModule)
   },

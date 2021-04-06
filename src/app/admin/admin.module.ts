@@ -5,6 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialDesign } from '../material/material';
 import { ImagesComponent } from './images/images.component';
+import { ProductComponent } from './product/product.component';
+import { FormsModule } from '@angular/forms';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -18,18 +21,27 @@ const routes: Routes = [
       {
         path:'images',
         component:ImagesComponent
+      },
+      {
+        path:'product',
+        component:ProductComponent
+      },
+      {
+        path:'',
+        pathMatch:'full',
+        redirectTo:'/admiin/dashboard'
       }
     ]
   }
-  
 ]
 
 @NgModule({
-  declarations: [AdminComponent, DashboardComponent, ImagesComponent],
+  declarations: [AdminComponent, DashboardComponent, ImagesComponent,ProductComponent,ProductDetailComponent,],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialDesign
+    MaterialDesign,
+    FormsModule
   ]
 })
 export class AdminModule { }
