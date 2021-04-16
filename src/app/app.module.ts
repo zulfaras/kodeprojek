@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MaterialDesign} from './material/material';
 import { ForgotComponent } from './auth/forgot/forgot.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ForgotComponent } from './auth/forgot/forgot.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MaterialDesign
+    MaterialDesign,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

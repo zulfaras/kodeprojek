@@ -1,5 +1,7 @@
-
-<mat-card>
+<div *ngIf="loading" style="height: 300px;" class="uk-flex uk-flex-center uk-flex-middle">
+    <mat-spinner diameter="30"></mat-spinner>
+ </div>
+<mat-card *ngIf="!loading">
     <mat-card-header>
         <mat-card-title>{{title}}</mat-card-title>
     </mat-card-header>
@@ -29,7 +31,7 @@
                     <td>{{book.price}}</td>
                     <td align="right">
                         <button mat-button color="primary"(click)="productDetail(book,idx)" >Edit</button>
-                        <button mat-button color="warn"(click)="deleteProduct(idx)">Delete</button>
+                        <button mat-button color="warn"(click)="deleteProduct(book.id,idx)" [disabled]="loadingDelete[idx]">{{loadingDelete[idx] ? 'Menghapus..':'Delete'}}</button>
                     </td>
                 </tr>
             </tbody>

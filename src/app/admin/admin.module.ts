@@ -8,6 +8,7 @@ import { ImagesComponent } from './images/images.component';
 import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialDesign,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class AdminModule { }
