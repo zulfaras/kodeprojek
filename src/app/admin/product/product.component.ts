@@ -30,9 +30,18 @@ export class ProductComponent implements OnInit {
   };
   this.getBooks();
 }
-loading:boolean;
+loading!:boolean;
 getBooks()
   {
+    this.loading=true;
+    this.api.get('bookswithauth').subscribe(result=>{
+      this.books=result;
+      this.loading=false;
+    },error=>{
+      this.loading=false;
+      alert('Ada masalah saat pengambilan data. Coba lagi');
+    })
+    /*
     this.loading=true;
     this.api.get('books').subscribe(result=>{
       this.books=result;
@@ -41,6 +50,7 @@ getBooks()
       this.loading=false;
       alert('Ada masalah saat pengambilan data. Coba lagi');
     })
+    */
   }
   
 productDetail(data,idx)

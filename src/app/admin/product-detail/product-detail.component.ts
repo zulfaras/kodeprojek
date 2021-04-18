@@ -22,7 +22,8 @@ export class ProductDetailComponent implements OnInit {
    this.loading=true;
    if(this.data.id == undefined)
    {
-     this.api.post('books',this.data).subscribe(result=>{
+     
+     this.api.post('books', this.data).subscribe(result=>{
        this.dialogRef.close(result);
        this.loading=false; 
     }, error=>{

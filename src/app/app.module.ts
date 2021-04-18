@@ -12,6 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MaterialDesign} from './material/material';
 import { ForgotComponent } from './auth/forgot/forgot.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatToolbarModule,
     MaterialDesign,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
