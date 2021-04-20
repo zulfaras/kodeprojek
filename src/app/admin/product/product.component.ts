@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
@@ -70,14 +71,14 @@ productDetail(data,idx)
   })
 }
 loadingDelete:any={};
-deleteProduct(id,idx)
+deleteProduct(id_buku:any, idx:any)
  {
    
    var conf=confirm('Delete item?');
    if(conf)
    {
     this.loadingDelete[idx]=true;
-     this.api.delete('books/'+id).subscribe(res=>{
+     this.api.delete('bookswithauth/'+id_buku).subscribe(res=>{
       this.books.splice(idx,1);
       this.loadingDelete[idx]=false;
      },error=>{
@@ -86,4 +87,16 @@ deleteProduct(id,idx)
      });
    }
  }
+
+uploadFile(data)
+{
+  let dialog=this.dialog.open(FileUploaderComponent, {
+    width:'400px',
+    data:data
+  });
+  dialog.afterClosed().subscribe(res=>{
+    return;
+  })
+}
+
 }

@@ -21,7 +21,7 @@ mode:string='side';
 
 chockLogin()
 {
-  this.api.get('bookswithauth').subscribe(res=>{
+  this.api.get('bookswithauth/status').subscribe(res=>{
     return;
   },err=>{
     this.router.navigate(['/login']);

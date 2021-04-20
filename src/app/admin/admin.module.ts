@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AdminComponent, DashboardComponent, ImagesComponent,ProductComponent,ProductDetailComponent,],
+  declarations: [AdminComponent, DashboardComponent, ImagesComponent,ProductComponent,ProductDetailComponent, FileUploaderComponent,],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

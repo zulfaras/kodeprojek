@@ -16,23 +16,25 @@ export class ProductDetailComponent implements OnInit {
  ) { }
  ngOnInit(): void {
  }
- loading:boolean;
+ loading:boolean | undefined;
  saveData()
  {
    this.loading=true;
+   console.log(this.data);
    if(this.data.id == undefined)
    {
      
-     this.api.post('books', this.data).subscribe(result=>{
-       this.dialogRef.close(result);
+     this.api.post('bookswithauth', this.data).subscribe(result=>{
+       this.dialogRef.close(this.data);
        this.loading=false; 
     }, error=>{
       this.loading=false; 
       alert('Tidak dapat menyimpan data');
     });
    }else{
-       this.api.put('books/'+this.data.id,this.data).subscribe(result=>{
+       this.api.put('bookswithauth/'+this.data.id,this.data).subscribe(result=>{
         this.dialogRef.close(result);
+        console.log(result);
         this.loading=false;
      },error=>{
       this.loading=false; 

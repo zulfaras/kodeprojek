@@ -29,33 +29,40 @@ export class ApiService {
   }
 
   post(url:any,data:any)
- {
+  {
   this.getToken();
    return this.http.post(this.serverUrl+url,data,this.httpOptions);
- }
- put(url:any,data:any)
- {
+  }
+  put(url:any,data:any)
+  {
   this.getToken();
    return this.http.put(this.serverUrl+url,data,this.httpOptions);
- }
-delete(url:any)
+  }
+  delete(url:any)
   {
     this.getToken();
    return this.http.delete(this.serverUrl+url,this.httpOptions);
   }
 
-  
-
-
   register(email,password)
   {
     return this.http.post(this.serverUrl+'auth/register',{email:email, password:password});
   }
+
   login(email,password)
   {
     return this.http.post(this.serverUrl+'auth/login',{email:email, password:password});
   }
 
+  upload(file)
+  {
+    return this.http.post(this.serverUrl+'upload/book',file);
+  }
+
+  updateProduct(file)
+  {
+    return this.http.post(this.serverUrl+'updateProduct/book',file);
+  }
 
 }
  
