@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import * as FileSaver from 'file-saver';
 import { ApiService } from 'src/app/services/api.service';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
@@ -31,7 +32,7 @@ export class ProductComponent implements OnInit {
   };
   this.getBooks();
 }
-loading!:boolean;
+loading:boolean;
 getBooks()
   {
     this.loading=true;
@@ -54,7 +55,7 @@ getBooks()
     */
   }
   
-productDetail(data,idx)
+productDetail(data:any,idx:number)
 {
   let dialog=this.dialog.open(ProductDetailComponent, {
     width:'400px',
@@ -88,7 +89,7 @@ deleteProduct(id_buku:any, idx:any)
    }
  }
 
-uploadFile(data)
+uploadFile(data: any)
 {
   let dialog=this.dialog.open(FileUploaderComponent, {
     width:'400px',
@@ -98,5 +99,8 @@ uploadFile(data)
     return;
   })
 }
-
+download(data)
+{
+  FileSaver.saveAs('http://api.sunhouse.co.id/bookstore/'+data.url);
+}
 }

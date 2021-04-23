@@ -21,10 +21,6 @@ const routes: Routes = [
         component:DashboardComponent
       },
       {
-        path:'images',
-        component:ImagesComponent
-      },
-      {
         path:'product',
         component:ProductComponent
       },
