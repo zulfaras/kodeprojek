@@ -20,12 +20,11 @@ export class ProductDetailComponent implements OnInit {
  saveData()
  {
    this.loading=true;
-   console.log(this.data);
    if(this.data.id == undefined)
    {
      
      this.api.post('bookswithauth', this.data).subscribe(result=>{
-       this.dialogRef.close(this.data);
+       this.dialogRef.close(result);
        this.loading=false; 
     }, error=>{
       this.loading=false; 
@@ -34,7 +33,6 @@ export class ProductDetailComponent implements OnInit {
    }else{
        this.api.put('bookswithauth/'+this.data.id,this.data).subscribe(result=>{
         this.dialogRef.close(result);
-        console.log(result);
         this.loading=false;
      },error=>{
       this.loading=false; 

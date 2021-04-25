@@ -32,8 +32,8 @@ export class ProductComponent implements OnInit {
   };
   this.getBooks();
 }
-loading:boolean;
-getBooks()
+loading:boolean ;
+  getBooks()
   {
     this.loading=true;
     this.api.get('bookswithauth').subscribe(result=>{
@@ -41,66 +41,52 @@ getBooks()
       this.loading=false;
     },error=>{
       this.loading=false;
-      alert('Ada masalah saat pengambilan data. Coba lagi');
     })
-    /*
-    this.loading=true;
-    this.api.get('books').subscribe(result=>{
-      this.books=result;
-      this.loading=false;
-    },error=>{
-      this.loading=false;
-      alert('Ada masalah saat pengambilan data. Coba lagi');
-    })
-    */
   }
-  
-productDetail(data:any,idx:number)
-{
-  let dialog=this.dialog.open(ProductDetailComponent, {
-    width:'400px',
-    data:data
-  });
-  dialog.afterClosed().subscribe(res=>{
-    if(res)
+    ProductDetail(data: any,idx: number)
     {
-       //jika idx=-1 (penambahan data baru) maka tambahkan data
-      if(idx==-1)this.books.push(res);      
-       //jika tidak maka perbarui data  
-      else this.books[idx]=data; 
-    }
-  })
-}
-loadingDelete:any={};
-deleteProduct(id_buku:any, idx:any)
- {
-   
-   var conf=confirm('Delete item?');
-   if(conf)
-   {
-    this.loadingDelete[idx]=true;
-     this.api.delete('bookswithauth/'+id_buku).subscribe(res=>{
-      this.books.splice(idx,1);
-      this.loadingDelete[idx]=false;
-     },error=>{
-      this.loadingDelete[idx]=false;
-       alert('Tidak dapat menghapus data');
-     });
-   }
- }
+      let dialog= this.dialog.open(ProductDetailComponent, {
+          width: '400px',
+          data: data,
+      });
+        dialog.afterClosed().subscribe(result=> {
+         if(result)
+         {
+          if(idx==-1)this.books.push(result);
+          else this.books[idx]=data;
+         }
+        });
+      }
 
-uploadFile(data: any)
-{
-  let dialog=this.dialog.open(FileUploaderComponent, {
-    width:'400px',
-    data:data
-  });
-  dialog.afterClosed().subscribe(res=>{
-    return;
-  })
-}
-download(data)
-{
-  FileSaver.saveAs('http://api.sunhouse.co.id/bookstore/'+data.url);
-}
-}
+  loadingDelete:any={};
+  DeleteProduct(id: any,idx: any)
+  {
+    var conf=confirm('Delete item?');
+        if(conf)
+        this.loadingDelete[idx]=true;
+        {
+          this.api.delete('bookswithauth/'+id).subscribe(result=>{
+            this.books.splice(idx,1);
+            this.loadingDelete[idx]=false;
+          },error=>{
+            this.loadingDelete[idx]=false;
+            alert('Tidak dapat menghapus data');
+          });
+        }
+      }
+
+      uploadFile(data: any)
+      {
+        let dialog= this.dialog.open(FileUploaderComponent  , {
+          width: '400px',
+          data: data
+      });
+        dialog.afterClosed().subscribe(result=> {
+        return;
+        })      
+      }
+      downloadFile(data:any)
+      {
+        FileSaver.saveAs('http://api.sunhouse.co.id/bookstore/'+data.url);
+      }
+    }

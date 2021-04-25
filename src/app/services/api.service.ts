@@ -9,59 +9,63 @@ export class ApiService {
   constructor(
     public http:HttpClient
   ) { }
-  httpOptions: any;
-  getToken() {
-    var tokenKey = localStorage.getItem('appToken');
-    if (tokenKey != null) {
-      var tkn = JSON.parse(tokenKey);
-      this.httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + tkn.token
-        })
-      }
-    }
-  }
+httpOptions:any;
+ getToken()
+ {
+   var tokenKey=localStorage.getItem('appToken');
+   if(tokenKey!=null)
+   {
+     var tkn=JSON.parse(tokenKey);
+     this.httpOptions={
+       headers:new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Authorization': 'Bearer '+tkn.token
+       })
+     }
+   }
+ }
 
-  get(url: string) {
-    this.getToken();
-    return this.http.get(this.serverUrl + url, this.httpOptions);
-  }
+  get(url: any)
+ {
+   this.getToken();
+   return this.http.get(this.serverUrl+url,this.httpOptions);
+ }
 
-  post(url:any,data:any)
-  {
+ post(url: any,data: any)
+ {
   this.getToken();
-   return this.http.post(this.serverUrl+url,data,this.httpOptions);
-  }
-  put(url:any,data:any)
-  {
+  return this.http.post(this.serverUrl+url,data,this.httpOptions);
+ }
+
+ put(url: any,data: any)
+ {
   this.getToken();
-   return this.http.put(this.serverUrl+url,data,this.httpOptions);
-  }
-  delete(url:any)
-  {
-    this.getToken();
-   return this.http.delete(this.serverUrl+url,this.httpOptions);
-  }
+  return this.http.put(this.serverUrl+url,data,this.httpOptions);
+ }
 
-  register(email,password)
-  {
-    return this.http.post(this.serverUrl+'auth/register',{email:email, password:password});
-  }
+delete(url: any)
+ {
+  this.getToken();
+  return this.http.delete(this.serverUrl+url,this.httpOptions);
+ }
+ 
+ register(email: any,password: any)
+ {
+   return this.http.post(this.serverUrl+'auth/register',{email:email,password:password});
+ }
 
-  login(email,password)
-  {
-    return this.http.post(this.serverUrl+'auth/login',{email:email, password:password});
-  }
+ login(email: any,password: any)
+ {
+   return this.http.post(this.serverUrl+'auth/login',{email:email,password:password});
+ }
 
-  upload(file)
+ upload(file:any)
   {
     return this.http.post(this.serverUrl+'upload/book',file);
   }
 
-  updateProduct(file)
+  updateProduct(file:any)
   {
     return this.http.post(this.serverUrl+'updateProduct/book',file);
   }
-
 }

@@ -8,6 +8,5 @@
 </div>
 <div mat-dialog-action align="right">
   <button mat-button mat-dialog-close style="margin-right: 5px;">Cancel</button>
-  <button mat-flat-button color="primary" (click)="uploadFile()">Upload</button>
+  <button mat-flat-button color="primary" (click)="uploadFile()" [disabled]="loadingUpload">{{ loadingUpload ? 'uploading...' :'Upload'}}</button>
 </div>
-
