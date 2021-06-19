@@ -3,6 +3,10 @@
  </h3>
  <div mat-dialog-content>
     <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>ID Buku</mat-label>
+        <input matInput [(ngModel)]="data.Kode">      
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Judul</mat-label>
         <input matInput [(ngModel)]="data.title">      
     </mat-form-field>

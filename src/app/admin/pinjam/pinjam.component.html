@@ -1,0 +1,53 @@
+<div *ngIf="loading" style="height: 300px;" class="uk-flex uk-flex-center uk-flex-middle">
+    <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf='!loading'>
+    <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class='uk-flex'>
+            <span class="uk-width-expand"></span>
+            <button mat-flat-button color="primary" (click)="PinjamDetail({},-1)">Tambah Peminjam</button>
+        </div>
+        <table class="uk-table uk-table-middle uk-table-divider">
+            <thead>
+                <th></th>
+                <th>No</th>
+                <th>ID Transaksi</th>
+                <th>ID Anggota</th>
+                <th>Nama</th>
+                <th>No Hp</th>
+                <th>Alamat</th>
+                <th>Judul Buku</th>
+                <th>Kode Buku</th>
+                <th>Tanggal Pinjam</th>
+                <th>Tanggal Kembali</th>
+                <th>Status</th>
+                <th align="right"></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Pinjam of Pinjams; let idx=index">
+                    <td>
+                    </td>
+                    <td>{{idx+1}}</td>
+                    <td>{{Pinjam.IDTransaksi}}</td>
+                    <td>{{Pinjam.IDAnggota}}</td>
+                    <td>{{Pinjam.Nama}}</td>
+                    <td>{{Pinjam.NoHp}}</td>
+                    <td>{{Pinjam.Alamat}}</td>
+                    <td>{{Pinjam.JudulBuku}}</td>
+                    <td>{{Pinjam.KodeBuku}}</td>
+                    <td>{{Pinjam.TanggalPinjam}}</td>
+                    <td>{{Pinjam.TanggalKembali}}</td>
+                    <td>{{Pinjam.Status}}</td>
+                    <td align="right">
+                        <button mat-button color="primary" (click)="PinjamDetail(Pinjam,idx)">Edit</button>
+                        <button mat-button color="accent" (click)="DeleteProduct(Pinjam.id, idx)"[disabled]="loadingDelete[idx]">{{loadingDelete[idx] ? 'Menghapus..':'Delete'}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+</mat-card>

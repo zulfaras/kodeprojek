@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.chockLogin();
+    //this.chockLogin();
   }
 mode:string='side';
 

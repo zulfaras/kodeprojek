@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pinjam-buku-f4294": {
+      "hosting": {
+        "app": [
+          "pinjam-buku-f4294"
+        ]
+      }
+    }
+  }
+}

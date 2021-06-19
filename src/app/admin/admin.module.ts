@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { PinjamComponent } from './pinjam/pinjam.component';
+import { PinjamDetailComponent } from './pinjam-detail/pinjam-detail.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,10 @@ const routes: Routes = [
         component:ProductComponent
       },
       {
+        path:'pinjam',
+        component:PinjamComponent
+      },
+      {
         path:'',
         pathMatch:'full',
         redirectTo:'/admiin/dashboard'
@@ -34,7 +40,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AdminComponent, DashboardComponent, ImagesComponent,ProductComponent,ProductDetailComponent, FileUploaderComponent,],
+  declarations: [AdminComponent, DashboardComponent, ImagesComponent,ProductComponent,ProductDetailComponent, FileUploaderComponent, PinjamComponent, PinjamDetailComponent,],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

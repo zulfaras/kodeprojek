@@ -1,0 +1,50 @@
+<h3 mat-dialog-title>
+    Detail Product
+ </h3>
+ <div mat-dialog-content>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>ID Transaksi</mat-label>
+        <input matInput [(ngModel)]="data.IDTransaksi">      
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>ID Anggota</mat-label>
+        <input matInput [(ngModel)]="data.IDAnggota">      
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Nama</mat-label>
+        <input matInput [(ngModel)]="data.Nama" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>No Hp</mat-label>
+        <input matInput [(ngModel)]="data.NoHp" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Alamat</mat-label>
+        <input matInput [(ngModel)]="data.Alamat" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Judul Buku</mat-label>
+        <input matInput [(ngModel)]="data.JudulBuku" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Kode Buku</mat-label>
+        <input matInput [(ngModel)]="data.KodeBuku" >      
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Tanggal Pinjam</mat-label>
+        <input matInput type="date" [(ngModel)]="data.TanggalPinjam" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Tanggal Kembali</mat-label>
+        <input matInput type="date" [(ngModel)]="data.TanggalKembali" >     
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Status</mat-label>
+        <input matInput [(ngModel)]="data.Status" >      
+    </mat-form-field>
+ </div>
+ <div mat-dialog-actions align="end">
+ <button mat-button mat-dialog-close>Batal</button>
+ <button mat-flat-button (click)="simpanData()"[disabled]="loading">{{loading ? 'Menyimpan..':'Simpan'}}</button>
+ </div>
+ 
