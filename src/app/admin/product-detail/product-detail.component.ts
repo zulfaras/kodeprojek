@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
@@ -47,10 +46,11 @@ export class ProductDetailComponent implements OnInit {
     });
    }else{
        //this.api.put('bookswithauth/'+this.data.id,this.data).subscribe(result=>{
-        this.api.put('books/'+this.data.id,this.data).subscribe(result=>{
-        this.dialogRef.close(result);
+        this.db.collection('books/').doc(this.data.id).update(this.data).then(result=>{
+        this.dialogRef.close(this.data);
         this.loading=false;
-     },error=>{
+     }).catch(er=>{
+      console.log(er);
       this.loading=false; 
       alert('Tidak dapat memperbarui data');
      })

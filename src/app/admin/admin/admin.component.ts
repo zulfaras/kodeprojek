@@ -21,20 +21,22 @@ mode:string='side';
 
 chockLogin()
 {
-  this.api.get('bookswithauth/status').subscribe(res=>{
+  this.api.get('books/status').subscribe(res=>{
     return;
   },err=>{
     this.router.navigate(['/login']);
   })
 }
 
+loading:boolean;
 logout()
 {
+  this.loading=true;
   let conf=confirm('keluar aplikasi?');
   if (conf)
   {
     localStorage.removeItem('appToken');
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
 }
 }

@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   userData : any = {};
   constructor(   
     public dialog:MatDialog,
-    public api:ApiService,
+  //public api:ApiService,
     public db: AngularFirestore,
     public auth: AngularFireAuth
   ){
@@ -47,7 +47,6 @@ loading:boolean ;
       this.loading=false;
     })
   }
-
     ProductDetail(data: any,idx: number)
     {
       let dialog= this.dialog.open(ProductDetailComponent, {
@@ -71,16 +70,15 @@ loading:boolean ;
         this.loadingDelete[idx]=true;
         {
           //this.api.delete('bookswithauth/'+id).subscribe(result=>{
-            this.api.delete('books/'+id).subscribe(result=>{
+            this.db.collection('books/').doc(id).delete().then(result=>{
             this.books.splice(idx,1);
             this.loadingDelete[idx]=false;
-          },error=>{
+          }).catch(error=>{
             this.loadingDelete[idx]=false;
             alert('Tidak dapat menghapus data');
           });
         }
       }
-
       uploadFile(data: any)
       {
         let dialog= this.dialog.open(FileUploaderComponent  , {

@@ -1,6 +1,5 @@
 <div style="height:fit-content" class="uk-flex uk-flex-center uk-flex-middle">
 </div>
-
 <mat-card >
     <mat-card-header>
         <mat-card-title>Dashboard </mat-card-title>
@@ -8,21 +7,37 @@
     <mat-card-content>
             <tbody>
                 <mat-nav-list>
-                    
-                    <mat-list-item routerLink="/admin/product">
-                        <span class="uk-flex-right" aria-setsize="30"></span>
-                        <button mat-flat-button color="primary"routerLink="/admin/product" >Daftar Buku</button>
-                    </mat-list-item>
-                    <mat-list-item routerLink="/admin/pinjam">
-                        <span class="uk-flex-right" aria-setsize="30"></span>
-                        <button mat-flat-button color="primary"routerLink="/admin/pinjam" >Daftar Pinjam Buku</button>
-                    </mat-list-item>
-               
-                
+
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="card-box bg-green">
+                            <div class="inner">
+                                <h3>Daftar Buku</h3>
+                            </div>
+                            <div class="icon fa fa-users">
+                            </div>
+                            <a routerLink="/admin/product" class="card-box-footer" class="fa fa-arrow-circle-right">Lihat detail</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="card-box bg-orange">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="card-box bg-green">
+                            <div class="inner">
+                                <h3>Daftar pinjam</h3>
+                            </div>
+                            <div class="icon fa fa-users">
+                            </div>
+                            <a routerLink="/admin/pinjam" class="card-box-footer" class="fa fa-arrow-circle-right">Lihat detail</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="card-box bg-orange">
+                        </div>
+                    </div>
             </mat-nav-list>
             </tbody>
     </mat-card-content>
 </mat-card>
-
-
-

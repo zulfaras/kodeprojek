@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { PinjamDetailComponent } from '../pinjam-detail/pinjam-detail.component';
@@ -9,40 +11,34 @@ import { PinjamDetailComponent } from '../pinjam-detail/pinjam-detail.component'
 })
 export class PinjamComponent implements OnInit {
   title:any;
-  Pinjam:any={};
   Pinjams:any=[];
+  userData : any ={};
   constructor(   
     public dialog:MatDialog,
-    public api:ApiService
+    //public api:ApiService
+    public db : AngularFirestore,
+    public auth : AngularFireAuth
   ){
-
   }
-
   ngOnInit(): void {
     this.title='Peminjam';
-    this.Pinjam={
-      IDTransaksi:'TRB31',
-      IDAnggota:'AGT01',
-      Nama:'Farid Suryanto',
-      NoHp:'08512341513',
-      Alamat:'jogja',
-      JudulBuku:'ANGGULAR',
-      KodeBuku:'BKT21',
-      TanggalPinjam:'Date',
-      TanggalKembali:'Date',
-      Status:'kembali'
-  };
-  this.getPinjams();
+    this.auth.user.subscribe(user=>{
+      this.userData = user;
+    this.getPinjams();
+});
 }
 loading:boolean ;
   getPinjams()
   {
     this.loading=true;
     //this.api.get('bookswithauth').subscribe(result=>{
-    this.api.get('Pinjams').subscribe(result=>{
-      this.Pinjams=result;
+    this.db.collection('Pinjams',ref=>{
+      return ref.where ('uid','==',this.userData.uid);
+    }).valueChanges().subscribe(res=>{
+      console.log(res);
+      this.Pinjams=res;
       this.loading=false;
-    },error=>{
+    },err=>{
       this.loading=false;
     })
   }
@@ -69,10 +65,10 @@ loading:boolean ;
         this.loadingDelete[idx]=true;
         {
           //this.api.delete('bookswithauth/'+id).subscribe(result=>{
-            this.api.delete('Pinjams/'+id).subscribe(result=>{
+            this.db.collection('Pinjams/').doc(id).delete().then(result=>{
             this.Pinjams.splice(idx,1);
             this.loadingDelete[idx]=false;
-          },error=>{
+          }).catch(error=>{
             this.loadingDelete[idx]=false;
             alert('Tidak dapat menghapus data');
           });
