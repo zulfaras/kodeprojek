@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-pinjam-detail',
@@ -10,12 +9,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./pinjam-detail.component.scss']
 })
 export class PinjamDetailComponent implements OnInit {
-
   userData: any = {};
   constructor(
     public dialogRef:MatDialogRef<PinjamDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    //public api:ApiService,
       public db: AngularFirestore,
       public auth : AngularFireAuth
   ) { }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ApiService } from 'src/app/services/api.service';
 import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -10,12 +9,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
  styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-
   userData: any = {};
- constructor(
+  constructor(
    public dialogRef:MatDialogRef<ProductDetailComponent>,
    @Inject(MAT_DIALOG_DATA) public data: any,
-   public api:ApiService,
    public db: AngularFirestore,
    public auth:AngularFireAuth
  ) { }
@@ -30,10 +27,6 @@ export class ProductDetailComponent implements OnInit {
    this.loading=true;
    if(this.data.id == undefined)
    {
-     
-     //this.api.post('bookswithauth', this.data).subscribe(result=>{
-    //this.api.post('books', this.data).subscribe(result=>{
-
       let doc = new Date().getTime().toString();
       this.data.uid = this.userData.uid;
       this.db.collection('books').doc(doc).set(this.data).then(res=>{

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -13,7 +12,6 @@ export class RegisterComponent implements OnInit {
   user:any={};
   hide:boolean=true;
   constructor(
-    public api:ApiService,
     public router:Router,
     public auth: AngularFireAuth
   ) { }

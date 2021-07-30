@@ -1964,9 +1964,9 @@ select.uk-form-width-xsmall {
   /* 7 */
   display: inline-block;
   box-sizing: border-box;
-  padding: 0 30px;
+  padding: 0 0px;
   vertical-align: middle;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   /* 8 */
   line-height: 38px;
   /* 9 */
@@ -2049,6 +2049,16 @@ select.uk-form-width-xsmall {
   color: #fff;
   border: 1px solid transparent;
 }
+/*
+ * Buat
+ */
+ .uk-button-trans {
+  background-color:transparent;
+  color: #fff;
+  border: 1px solid transparent;
+  position:var(--uk-leader-fill-content);
+}
+
 /* Hover + Focus */
 .uk-button-secondary:hover,
 .uk-button-secondary:focus {
@@ -7600,6 +7610,9 @@ iframe.uk-cover {
 }
 .uk-background-secondary {
   background-color: #222;
+}
+.uk-background-sndr {
+  background-color: rgb(6, 100, 45);
 }
 /* Size
  ========================================================================== */

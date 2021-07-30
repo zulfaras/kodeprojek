@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import * as FileSaver from 'file-saver';
-import { ApiService } from 'src/app/services/api.service';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
@@ -18,11 +15,9 @@ export class ProductComponent implements OnInit {
   userData : any = {};
   constructor(   
     public dialog:MatDialog,
-  //public api:ApiService,
     public db: AngularFirestore,
     public auth: AngularFireAuth
   ){
-
   }
   ngOnInit(): void {
     this.title='Produk';
@@ -31,15 +26,13 @@ export class ProductComponent implements OnInit {
       this.getBooks();
     });    
 }
-
-
 loading:boolean ;
   getBooks()
   {
     this.loading=true;
     this.db.collection('books', ref=>{
       return ref.where ('uid','==',this.userData.uid);
-    }).valueChanges().subscribe(res=>{
+    }).valueChanges({idField : 'id'}).subscribe(res=>{
       console.log(res);
       this.books=res;
       this.loading=false;
@@ -54,11 +47,7 @@ loading:boolean ;
           data: data,
       });
         dialog.afterClosed().subscribe(result=> {
-         if(result)
-         {
-          if(idx==-1)this.books.push(result);
-          else this.books[idx]=data;
-         }
+          return;
         });
       }
 
@@ -67,7 +56,6 @@ loading:boolean ;
   {
     var conf=confirm('Delete item?');
         if(conf)
-        this.loadingDelete[idx]=true;
         {
           //this.api.delete('bookswithauth/'+id).subscribe(result=>{
             this.db.collection('books/').doc(id).delete().then(result=>{
@@ -78,19 +66,5 @@ loading:boolean ;
             alert('Tidak dapat menghapus data');
           });
         }
-      }
-      uploadFile(data: any)
-      {
-        let dialog= this.dialog.open(FileUploaderComponent  , {
-          width: '400px',
-          data: data
-      });
-        dialog.afterClosed().subscribe(result=> {
-        return;
-        })      
-      }
-      downloadFile(data:any)
-      {
-        FileSaver.saveAs('http://api.sunhouse.co.id/bookstore/'+data.url);
       }
     }

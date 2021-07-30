@@ -15,17 +15,9 @@ const routes: Routes = [
     path:'register',
     component:RegisterComponent
   },
-  {
-    path:'forgot',
-    component:ForgotComponent
-  },
-  {
+    {
     path:'dashboard',
     component:DashboardComponent
-  },
-  {
-    path:'images',
-    component:ImagesComponent
   },
   {
     path:'admin',

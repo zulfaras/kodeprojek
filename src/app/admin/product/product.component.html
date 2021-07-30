@@ -21,15 +21,13 @@
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
                 <th>ISBN</th>
-                <th>Harga</th>
+                <th>JUMLAH</th>
+                <th>Dipinjam</th>
                 <th align="right"></th>
             </thead>
             <tbody>
                 <tr *ngFor="let book of books; let idx=index">
                     <td>
-                        <button mat-icon-button (click)="downloadFile(book)" *ngIf="book.url != '' ">
-                            <mat-icon>download</mat-icon>
-                        </button>
                     </td>
                     <td>{{idx+1}}</td>
                     <td>{{book.Kode}}</td>
@@ -38,9 +36,9 @@
                     <td>{{book.publisher}}</td>
                     <td>{{book.year}}</td>
                     <td>{{book.isbn}}</td>
-                    <td>{{book.price}}</td>
+                    <td>{{book.JUMLAH}}</td>
+                    <td>{{book.Dipinjam}}</td>
                     <td align="right">
-                        <button mat-button color="primary" (click)="uploadFile(book)">Upload</button>
                         <button mat-button color="primary" (click)="ProductDetail(book,idx)">Edit</button>
                         <button mat-button color="accent" (click)="DeleteProduct(book.id, idx)"[disabled]="loadingDelete[idx]">{{loadingDelete[idx] ? 'Menghapus..':'Delete'}}</button>
                     </td>

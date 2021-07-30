@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { ApiService } from 'src/app/services/api.service';
 import { PinjamDetailComponent } from '../pinjam-detail/pinjam-detail.component';
 @Component({
   selector: 'app-pinjam',
@@ -15,8 +14,7 @@ export class PinjamComponent implements OnInit {
   userData : any ={};
   constructor(   
     public dialog:MatDialog,
-    //public api:ApiService
-    public db : AngularFirestore,
+     public db : AngularFirestore,
     public auth : AngularFireAuth
   ){
   }
@@ -34,7 +32,7 @@ loading:boolean ;
     //this.api.get('bookswithauth').subscribe(result=>{
     this.db.collection('Pinjams',ref=>{
       return ref.where ('uid','==',this.userData.uid);
-    }).valueChanges().subscribe(res=>{
+    }).valueChanges({idField : 'id'}).subscribe(res=>{
       console.log(res);
       this.Pinjams=res;
       this.loading=false;
@@ -50,10 +48,7 @@ loading:boolean ;
       });
         dialog.afterClosed().subscribe(result=> {
          if(result)
-         {
-          if(idx==-1)this.Pinjams.push(result);
-          else this.Pinjams[idx]=data;
-         }
+         return;
         });
       }
 
@@ -62,7 +57,6 @@ loading:boolean ;
   {
     var conf=confirm('Delete item?');
         if(conf)
-        this.loadingDelete[idx]=true;
         {
           //this.api.delete('bookswithauth/'+id).subscribe(result=>{
             this.db.collection('Pinjams/').doc(id).delete().then(result=>{
